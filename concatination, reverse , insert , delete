@@ -1,0 +1,30 @@
+QUES 2
+Write a PROLOG program to implement conc(L1, L2, L3) where L2 is the list to be appended with L1 to get the resulted list L3.
+conc([], L2, L2).  % Base case: Concatenating an empty list with L2 gives L2.
+conc([H|T], L2, [H|L3]) :- conc(T, L2, L3).  % Recursively concatenate the head of L1 with the result of the tail.
+EXAMPLE USAGE :?- conc([1, 2, 3], [4, 5, 6], L).
+L = [1, 2, 3, 4, 5, 6].
+
+%QUES 3
+Write a PROLOG program to implement reverse(L, R) where List L is original and List R is reversed list.
+reverse([], []).  % Base case: The reverse of an empty list is an empty list.
+reverse([H|T], R) :- reverse(T, RT), conc(RT, [H], R).  % Recursively reverse the tail and then concatenate the head.
+EXAMPLE USAGE :?- reverse([1, 2, 3], R).
+R = [3, 2, 1].
+
+
+%QUES 14
+Write a PROLOG program to implement insert(I, N, L, R) that inserts an item I into Nth position of list L to generate a list R. 
+delete(1, [H|T], T).  % Base case: Deleting the first element returns the tail.
+delete(N, [H|T], [H|R]) :- N > 1, N1 is N - 1, delete(N1, T, R).  % Recursively traverse the list and delete the element at the specified position.
+EXAMPLE USAGE :?- insert(10, 2, [1, 2, 3], R).
+R = [1, 10, 2, 3].
+
+
+%QUES 15
+Write a PROLOG program to implement delete(N, L, R) that removes the element on Nth position from a list L to generate a list R.
+delete(1, [H|T], T).  % Base case: Deleting the first element returns the tail.
+delete(N, [H|T], [H|R]) :- N > 1, N1 is N - 1, delete(N1, T, R).  % Recursively traverse the list and delete the element at the specified position.
+EXAMPLE USAGE :?- delete(2, [1, 2, 3, 4], R).
+R = [1, 3, 4].
+
