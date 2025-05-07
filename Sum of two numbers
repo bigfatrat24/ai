@@ -1,0 +1,2 @@
+sum(X,Y,RESULT):-
+    RESULT is X+Y.
