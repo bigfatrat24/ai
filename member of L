@@ -1,0 +1,6 @@
+% Base case: X is the head of the list
+memb(X, [X|_]).
+
+% Recursive case: Check the rest of the list
+memb(X, [_|T]) :-
+    memb(X, T).
