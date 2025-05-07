@@ -1,0 +1,54 @@
+
+% FAMILY TREE
+
+parent(steve, alice).
+parent(nancy, alice).
+parent(steve, bob).
+parent(nancy, bob).
+parent(alice, eleven).
+parent(dave, eleven).
+parent(bob, will).
+parent(susan, will).
+parent(bob, joyce).
+parent(susan, joyce).
+parent(finn,bob).
+parent(maddy,bob).
+parent(joe,susan).
+parent(maya,susan).
+husband(steve,nancy).
+husband(dave,alice).
+husband(bob,susan).
+husband(finn,maddy).
+husband(joe,maya).
+
+% Gender facts:
+female(nancy).
+female(alice).
+female(susan).
+female(joyce).
+female(eleven).
+
+male(steve).
+male(will).
+male(dave).
+male(bob).
+
+% Rules:
+mother(X, Y) :-parent(X, Y), female(X).
+father(X, Y) :-parent(X, Y), male(X).
+sibling(X, Y):-parent(P, X),parent(P, Y), X \= Y. % Ensure X and Y are different people
+brother(X, Y):-male(X),sibling(X, Y).
+sister(X,Y):- female(X),sibling(X,Y).
+wife(X,Y):- husband(X,Y).
+married(X,Y):-wife(X,Y),
+husband(Y,X)|wife(Y,X),
+husband(X,Y).
+grandparent(X,Y):- parent(X,Z), parent(Z,Y).
+grandchild(X,Y):- grandparent(Y,X).
+grandson(X,Y):- grandchild(X,Y),male(X).
+granddaughter(X,Y):- grandchild(X,Y),female(X).
+grandfather(X,Y):- grandparent(X,Y),male(X).
+grandmother(X , Y) :- grandparent(X , Y),female(X).
+
+
+
