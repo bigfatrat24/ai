@@ -1,0 +1,7 @@
+% Base case:
+maxlist([X], X).
+
+% Recursive case: Compare the head with the max of the tail
+maxlist([H|T], M) :-
+    maxlist(T, M1),  % Recursively find the max of the tail
+    M is max(H, M1). % Compare head (H) with max of the tail (M1)
