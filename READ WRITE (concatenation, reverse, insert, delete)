@@ -1,0 +1,79 @@
+QUES.2.Concatenation of Two Lists
+
+Problem: Write a PROLOG program to implement conc(L1, L2, L3) where L2 is the list to be appended with L1 to get the resultant list L3.
+ANSWER:conc([], L, L).
+conc([H|T], L, [H|R]) :- conc(T, L, R).
+
+concatenate_lists :-
+    write('Enter first list: '), read(L1),
+    write('Enter second list: '), read(L2),
+    conc(L1, L2, L3),
+    write('Concatenated list: '), write(L3), nl.
+
+% Example Usage:
+% ?- concatenate_lists.
+% Enter first list: [1,2,3].
+% Enter second list: [4,5,6].
+% Concatenated list: [1,2,3,4,5,6].
+
+
+QUES 3.Reverse a List
+
+Problem: Write a PROLOG program to implement reverse(L, R) where L is the original list and R is the reversed list.
+ANSWER:reverse_list([], []).
+reverse_list([H|T], R) :- 
+    reverse_list(T, RevT), append(RevT, [H], R).
+
+reverse_input_list :-
+    write('Enter the list: '), read(L),
+    reverse_list(L, R),
+    write('Reversed list: '), write(R), nl.
+
+% Example Usage:
+% ?- reverse_input_list.
+% Enter the list: [1,2,3,4].
+% Reversed list: [4,3,2,1].
+
+QUES.14.Insert an Element at Nth Position
+
+Problem: Write a PROLOG program to implement insert(I, N, L, R) that inserts an item I into the Nth position of list L to generate a list R.
+ANSWER:insert(I, 1, L, [I|L]) :- !.
+insert(I, N, [H|T], [H|R]) :- 
+    N1 is N - 1, 
+    insert(I, N1, T, R).
+
+insert_element :-
+    write('Enter the element to insert: '), read(I),
+    write('Enter the position: '), read(N),
+    write('Enter the list: '), read(L),
+    insert(I, N, L, R),
+    write('List after insertion: '), write(R), nl.
+
+% Example Usage:
+% ?- insert_element.
+% Enter the element to insert: 10.
+% Enter the position: 3.
+% Enter the list: [1,2,3,4].
+% List after insertion: [1,2,10,3,4].
+
+
+QUES .15Delete an Element from Nth Position
+
+Problem: Write a PROLOG program to implement delete(N, L, R) that removes the element on Nth position from a list L to generate a list R.
+ANSWER:delete(1, [_|T], T) :- !.
+delete(N, [H|T], [H|R]) :- 
+    N1 is N - 1, 
+    delete(N1, T, R).
+
+delete_element :-
+    write('Enter the position to delete: '), read(N),
+    write('Enter the list: '), read(L),
+    delete(N, L, R),
+    write('List after deletion: '), write(R), nl.
+
+% Example Usage:
+% ?- delete_element.
+% Enter the position to delete: 2.
+% Enter the list: [1,2,3,4].
+% List after deletion: [1,3,4].
+
