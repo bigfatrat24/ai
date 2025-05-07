@@ -1,0 +1,9 @@
+% Base case: N1 * 0 is 0
+multi(_, 0, 0).
+
+% Recursive case: N1 * N2 is N1 + N1 * (N2 - 1)
+multi(N1, N2, R) :-
+    N2 > 0,
+    N2_1 is N2 - 1,        % Decrease N2 by 1
+    multi(N1, N2_1, R1),   % Recursively calculate N1 * (N2 - 1)
+    R is N1 + R1.          % Add N1 to the result of the smaller multiplication
