@@ -1,0 +1,78 @@
+QUES .10.
+Membership Check in List
+Problem: Write a PROLOG program to implement memb(X, L): to check whether X is a member of L or not.
+ANSWER:
+memb(X, [X|_]) :- 
+    write(X), write(' is a member of the list.'), nl, !.
+memb(X, [_|T]) :- 
+    memb(X, T).
+
+check_member :-
+    write('Enter the element: '), read(X),
+    write('Enter the list: '), read(L),
+    ( memb(X, L) -> true ; write(X), write(' is NOT in the list.'), nl ).
+
+% Example Usage:
+% ?- check_member.
+% Enter the element: 3.
+% Enter the list: [1,2,3,4].
+% 3 is a member of the list.
+
+
+QUES 11.
+ Sum of a List
+Problem: Write a PROLOG program to implement sumlist(L, S) so that S is the sum of a given list L.
+ANSWER:
+sumlist([], 0).
+sumlist([H|T], S) :- 
+    sumlist(T, S1), 
+    S is H + S1.
+
+calculate_sum :-
+    write('Enter the list: '), read(L),
+    sumlist(L, S),
+    write('The sum of the list is: '), write(S), nl.
+
+% Example Usage:
+% ?- calculate_sum.
+% Enter the list: [1,2,3,4].
+% The sum of the list is: 10.
+
+QUES 12.
+Even and Odd Length List Check
+Problem: Write a PROLOG program to implement two predicates evenlength(List) and oddlength(List) so that they are true if their argument is a list of even or odd length respectively.
+ANSWER:
+evenlength([]) :- !, write('The list has even length.'), nl.
+evenlength([_,_|T]) :- evenlength(T).
+
+oddlength([_]) :- !, write('The list has odd length.'), nl.
+oddlength([_,_|T]) :- oddlength(T).
+
+check_length :-
+    write('Enter the list: '), read(L),
+    ( evenlength(L) -> true ; oddlength(L) ).
+
+% Example Usage:
+% ?- check_length.
+% Enter the list: [1,2,3,4].
+% The list has even length.
+
+QUES. 13.
+Maximum Number in a List
+Problem: Write a PROLOG program to implement maxlist(L, M) so that M is the maximum number in the list.
+ANSWER:
+maxlist([X], X) :- !.
+maxlist([H|T], M) :- 
+    maxlist(T, M1), 
+    M is max(H, M1), !.
+
+find_max :-
+    write('Enter the list: '), read(L),
+    maxlist(L, M),
+    write('The maximum element is: '), write(M), nl.
+
+% Example Usage:
+% ?- find_max.
+% Enter the list: [3,1,4,1,5,9,2,6].
+% The maximum element is: 9.
+
