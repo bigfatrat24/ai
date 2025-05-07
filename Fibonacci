@@ -1,0 +1,12 @@
+% Base cases:
+fib(0, 0).  % Fibonacci of 0 is 0
+fib(1, 1).  % Fibonacci of 1 is 1
+
+% Recursive case:
+fib(N, T) :-
+    N > 1,
+    N1 is N - 1,
+    N2 is N - 2,
+    fib(N1, T1),   % T1 is Fibonacci of N-1
+    fib(N2, T2),   % T2 is Fibonacci of N-2
+    T is T1 + T2.  % Fibonacci of N is sum of previous two terms
