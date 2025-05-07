@@ -1,0 +1,13 @@
+% Base case: An empty list has even length
+evenlength([]).
+
+% Recursive case:
+evenlength([_,_|T]) :-
+    evenlength(T).
+
+% Base case: A list with one element has odd length
+oddlength([_]).
+
+% Recursive case:
+oddlength([_,_|T]) :-
+    oddlength(T).
