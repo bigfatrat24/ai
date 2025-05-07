@@ -1,0 +1,59 @@
+%QUES 4. 
+
+Write a prolog program to calculate the sum of two numbers .
+% Program to calculate the sum of two numbers
+sum :-
+    write('Enter first number: '), read(X),
+    write('Enter second number: '), read(Y),
+    S is X + Y,
+    write('Sum is: '), write(S).
+
+%QUES 5.
+
+Write a prolog program to implement Max (X,Y,M) so that the M is the maximum of two numbers X and Y.
+% Program to find the maximum of two numbers
+max(X, Y, M) :- X >= Y, !, M is X.
+max(_, Y, Y).
+
+
+%QUES 6 
+
+Write a program in PROLOG to implement factorial(N, F) where F represents the factorial of a number N.
+% Program to compute factorial of a number
+factorial(0, 1) :- !.
+factorial(N, F) :- 
+    N > 0,
+    N1 is N - 1,
+    factorial(N1, F1),
+    F is N * F1.
+
+%QUES 7.
+
+Write a program in PROLOG to implement generate_fib(N, T) where T represents the Nth term of the Fibonacci series.
+% Program to generate the Nth Fibonacci term
+generate_fib(0, 0) :- !.
+generate_fib(1, 1) :- !.
+generate_fib(N, T) :- 
+    N > 1,
+    N1 is N - 1,
+    N2 is N - 2,
+    generate_fib(N1, T1),
+    generate_fib(N2, T2),
+    T is T1 + T2.
+
+%QUES 8 .
+
+Write a PROLOG program to implement power(Num, Pow, Ans) where Num is raised to the power Pow to get Ans.
+% Program to compute power of a number
+power(_, 0, 1) :- !.
+power(Num, Pow, Ans) :-
+    Pow > 0,
+    Pow1 is Pow - 1,
+    power(Num, Pow1, Ans1),
+    Ans is Num * Ans1.
+
+%QUES 9 .
+
+Write a PROLOG program to implement multi(N1, N2, R) where N1 and N2 denote the numbers to be multiplied and R represents the result.
+% Program to multiply two numbers
+multi(N1, N2, R) :- R is N1 * N2.
